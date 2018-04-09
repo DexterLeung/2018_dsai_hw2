@@ -41,6 +41,11 @@ class TextSearch():
         return 1 if a>b else -1;
 
     def query(self, qStr):
+        ''' ### One-shot Query
+        qStr:   [str] A query string (one row of the defined query.txt file)
+        ### 一次性查詢
+        qStr:   [str] 搜索字串 (作業定義下的 query.txt 檔案中的其中一行)
+        '''
         if (" and " in qStr):
             queries = qStr.split(" and ");
             return [idx for idx in sorted(self.allIntersect([{idx for idx in self._idx[q[0]] if q in self._data[idx]} if q[0] in self._idx else set() for q in queries]), key=functools.cmp_to_key(self.sortAsc))];
